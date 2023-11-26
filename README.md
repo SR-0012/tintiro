@@ -4,9 +4,5 @@ This HTML and JavaScript code creates a simple dice game in a web page, featurin
 The page's visual design is styled using CSS, creating an aesthetic that emphasizes a dark background with bright text for a striking contrast. Elements such as dice images, result displays, and a roll button are arranged in a user-friendly layout. The button triggers the rollDice function, which computes the game's outcome and updates the interface with the results, including the winner and the amount won or lost based on the bet placed.
 
 
-![6](https://github.com/seki12-20/tintiro/assets/135343979/76090885-6f9f-450c-a111-09bbb2831c84)
-![5](https://github.com/seki12-20/tintiro/assets/135343979/9f159077-e70a-45b0-9a42-480c2fc4d45b)
-![4](https://github.com/seki12-20/tintiro/assets/135343979/2ddbafe7-d355-4eab-ac1d-30deb12058ee)
-![3](https://github.com/seki12-20/tintiro/assets/135343979/95590a9d-db97-4716-8f75-0febdd763f25)
-![2](https://github.com/seki12-20/tintiro/assets/135343979/1d9a6087-ae10-4dc8-a11a-40eb70d4e394)
-![1](https://github.com/seki12-20/tintiro/assets/135343979/ed8ae424-cf9b-425b-8fd1-d58f9364c35a)
+<img width="700" alt="image" src="https://github.com/seki12-20/tintiro/assets/135343979/adfba96c-f021-48a8-979f-ed251f00e065">
+<img width="700" alt="image" src="https://github.com/seki12-20/tintiro/assets/135343979/c0527f52-b177-4cab-9ebb-63484f7f0121">
