@@ -1,0 +1,181 @@
+<html>
+<head>
+<script>
+
+function Saikoro1() {
+    let saikoro1 = Math.floor( Math.random() * 6) +1;
+    document.getElementById("kekka1").innerHTML = saikoro1;
+    document.getElementById("sainome1").src= saikoro1 + ".jpg";
+    return saikoro1;
+}
+
+function Saikoro2() {
+    let saikoro2 = Math.floor( Math.random() * 6) +1;
+    document.getElementById("kekka2").innerHTML = saikoro2;
+    document.getElementById("sainome2").src= saikoro2 + ".jpg";
+    return saikoro2;
+}
+
+function Saikoro3() {
+    let saikoro3 = Math.floor( Math.random() * 6) +1;
+    document.getElementById("kekka3").innerHTML = saikoro3;
+    document.getElementById("sainome3").src= saikoro3 + ".jpg";
+    return saikoro3;
+}
+
+function Saikoro4() {
+    let saikoro4 = Math.floor( Math.random() * 6) +1;
+    document.getElementById("kekka4").innerHTML = saikoro4;
+    document.getElementById("sainome4").src= saikoro4 + ".jpg";
+    return saikoro4;
+}
+
+function Saikoro5() {
+    let saikoro5 = Math.floor( Math.random() * 6) +1;
+    document.getElementById("kekka5").innerHTML = saikoro5;
+    document.getElementById("sainome5").src= saikoro5 + ".jpg";
+    return saikoro5;
+}
+
+function Saikoro6() {
+    let saikoro6 = Math.floor( Math.random() * 6) +1;
+    document.getElementById("kekka6").innerHTML = saikoro6;
+    document.getElementById("sainome6").src= saikoro6 + ".jpg";
+    return saikoro6;
+}
+
+
+function calculateScore(dice) {
+  dice.sort(); 
+  const [a, b, c] = dice;
+
+  if (a === b && b === c) {
+    return a === 1 ? 50 : 30; // ピンゾロは5倍、その他のゾロ目は3倍
+  }
+  if (a !== b && b !== c && a + b + c === 15) 
+    return 20; // シゴロは2倍
+  if (a !== b && b !== c && a + b + c === 6) 
+    return -20; // ヒフミは2倍の損失
+  if (a === b) return c; 
+  if (b === c) return a; 
+
+  return 0; 
+}
+
+function rollDice() {
+    const diceResults = [
+        Saikoro1(),
+        Saikoro2(),
+        Saikoro3(),
+        Saikoro4(),
+        Saikoro5(),
+        Saikoro6()
+    ];
+    const bet = parseInt(document.getElementById('bet').value);
+    const childDice = diceResults.slice(0, 3); 
+    const parentDice = diceResults.slice(3, 6); 
+    const childScore = calculateScore(childDice);
+    const parentScore = calculateScore(parentDice);
+    let resultText;
+
+    if (childScore > parentScore) {
+        let winodds = childScore === 50 ? 5 : childScore === 30 ? 3 : 
+        childScore === 20 ? 2 : 1;
+        winodds *= parentScore === -20 ? 2 : 1;
+        resultText = `子の勝ちです！ +${bet * winodds}円`;
+    } else if (childScore < parentScore) {
+        let lossodds = parentScore === 50 ? 5 : parentScore === 30 ? 3 : 
+        parentScore === 20 ? 2 : 1;
+        lossodds *= childScore === -20 ? 2 : 1;
+        resultText = `子の負けです。 -${bet * lossodds}円`;
+    } else {
+        resultText = '引き分けです。賭け金は戻ります。';
+    }
+
+    document.getElementById('winner').innerHTML 
+    = `勝者: ${childScore > parentScore ? '子' : childScore < parentScore ? '親' : '引き分け'}`;
+    document.getElementById('result').innerHTML = resultText;
+    }
+
+</script>
+</head>
+<body>
+
+
+<p><img id="sainome1" src="1.jpg" width="50" height="50"><img id="sainome2" src="1.jpg" width="50" height="50"><img id="sainome3" src="1.jpg" width="50" height="50"></p>
+<div id="suuzi">
+    <p id="kekka1"></p>
+    <p id="kekka2"></p>
+    <p id="kekka3"></p>
+</div>
+<p><img id="sainome4" src="1.jpg" width="50" height="50"><img id="sainome5" src="1.jpg" width="50" height="50"><img id="sainome6" src="1.jpg" width="50" height="50"></p>
+<div id="suuzi">
+    <p id="kekka4"></p>
+    <p id="kekka5"></p>
+    <p id="kekka6"></p>
+</div>
+<div class="bet-input">
+    <label for="bet">賭け金:</label>
+    <input type="number" id="bet" value="100">
+</div>
+<p><button id="roll-button" onclick="rollDice();">サイコロを振る</button></p>
+<p id="winner"></p>
+<p id="result"></p>
+
+</body>
+</html>
+
+<style>
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; 
+    margin: 0; 
+    background-color: #0a0a0a; 
+    color: #fafafa; 
+}
+
+
+#roll-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 25px;
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: rgb(148, 1, 1); 
+}
+
+#roll-button:hover {
+    background-color: #f00; 
+}
+
+.bet-input, #result, #winner {
+    text-align: center;
+    margin-top: 30px;
+    border: 3px solid #333; 
+    background-color: #1a1a1a; 
+}
+
+#bet {
+    border: 3px solid #f00;
+    background-color: #1a1a1a;
+    color: #f00; 
+}
+
+#suuzi{
+    display: flex;
+}
+
+#suuzi p {
+    font-size: 16px; 
+    color: #ff0; 
+    margin: 0 20px; 
+}
+
+</style>
+  
